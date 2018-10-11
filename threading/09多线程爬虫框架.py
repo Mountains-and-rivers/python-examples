@@ -1,12 +1,13 @@
-"""多线程爬虫通用框架，数据存储在 MySQL 中。
+"""多线程爬虫通用框架，假设数据存储在 MySQL 中。
 
-任务分发，通过 Redis 或 threading.Queue() 来实现。
-上锁通过 threading.Lock() 来实现。
+任务分发，可以通过 Redis 或 queue.Queue() 来实现。
+线程同步通过 threading.Lock() 来实现。
 """
 
 import atexit
 import time
 import threading
+from typing import Dict
 
 import requests
 import pymysql
@@ -24,7 +25,7 @@ MYSQL_TABLE_SAVE = 'table'
 
 class Spider(threading.Thread):
 
-    headers = {
+    headers: Dict[str, str] = {
         'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36'
                       ' (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;'
@@ -34,9 +35,9 @@ class Spider(threading.Thread):
         'Cache-Control': 'max-age=0'
     }
 
-    insert_query_temp = 'INSERT INTO %s ({}) VALUES ({})' % MYSQL_TABLE_SAVE
+    insert_query_temp: str = 'INSERT INTO %s ({}) VALUES ({})' % MYSQL_TABLE_SAVE
 
-    def __init__(self, name, daemon):
+    def __init__(self, name: str, daemon: bool) -> None:
         super().__init__(name=name, daemon=daemon)
 
         atexit.register(self.close)  # 注册清理函数，线程结束时自动调用
@@ -55,17 +56,12 @@ class Spider(threading.Thread):
 
         self.post_insert_query = None
 
-    def run(self):
+    def run(self) -> None:
         print('%s 启动' % self.name)
         # TODO
         pass
 
-    @staticmethod
-    def parse(html):
-        # TODO
-        pass
-
-    def save(self, item):
+    def save(self, item: Dict) -> None:
         if not self.post_insert_query:
             self.post_insert_query = self.insert_query_temp.format(
                 ', '.join(item),
@@ -76,16 +72,21 @@ class Spider(threading.Thread):
         except pymysql.IntegrityError:
             pass
 
-    def terminate(self):
+    def terminate(self) -> None:
         self._running = False
 
-    def close(self):
+    def close(self) -> None:
         self.session.close()
         self.cursor.close()
         self.mysql_conn.close()
 
+    @staticmethod
+    def parse(html: str) -> None:
+        # TODO
+        pass
 
-def main():
+
+def main() -> None:
     thread_list = []
     for i in range(THREAD_NUM):
         t = Spider(f'thread{i+1}', daemon=True)
@@ -101,8 +102,9 @@ def main():
     except KeyboardInterrupt:  # 只有主线程能收到键盘中断
         for t in thread_list:  # 防止下面在保存完 `row` 后，线程又请求一个新 `row`
             t.terminate()
-    end = time.time()
-    print('\n[Finished in %.2fs]\n' % (end - start))
+    finally:
+        end = time.time()
+        print('\n[Finished in %.2fs]\n' % (end - start))
 
 
 if __name__ == '__main__':
