@@ -1,5 +1,21 @@
 """
 高效数据结构，数组用法。
+
+可用类型：
+Type code	C Type
+'b'	        signed char
+'B'	        unsigned char
+'u'	        Py_UNICOD
+'h'	        signed short
+'H'	        unsigned short
+'i'	        signed int
+'I'	        unsigned int
+'l'	        signed long
+'L'	        unsigned long
+'q'	        signed long long
+'Q'	        unsigned long long
+'f'	        float
+'d'	        double
 """
 
 import array
@@ -7,22 +23,6 @@ import array
 
 def main():
     # 显示所有数组所有可用的创建类型
-    """
-    Type code	C Type
-    'b'	        signed char
-    'B'	        unsigned char
-    'u'	        Py_UNICOD
-    'h'	        signed short
-    'H'	        unsigned short
-    'i'	        signed int
-    'I'	        unsigned int
-    'l'	        signed long
-    'L'	        unsigned long
-    'q'	        signed long long
-    'Q'	        unsigned long long
-    'f'	        float
-    'd'	        double
-    """
     print(array.typecodes)
 
     # 创建一个数组，支持如下方式
@@ -70,6 +70,7 @@ def main():
     # a.fromlist(lst)
     # a.frombytes(s)
     # a.fromfile(f, n)  # n 指读取数量
+
 
 if __name__ == '__main__':
     main()
