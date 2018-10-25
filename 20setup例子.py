@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""一般将安装脚本命名为setup.py，
+"""一般将安装脚本命名为 setup.py，
 然后执行 python3 setup.py install 安装.
 """
 
@@ -21,6 +21,6 @@ setup(
     install_requires=[  # 库前置依赖
         'requests',
     ],
-    include_package_data=True,  # 打包非py的静态资源
+    include_package_data=True,  # 打包非py的静态资源，如 html，css 等资源
     zip_safe=False  # 安装后的库是否压缩, 这里选False, 因为True会导致编辑器无法正常显示补全
 )

@@ -268,3 +268,5 @@
   c = {key:a[key] for key in a.keys() - {'z', 'w'}}
   # c is {'x': 1, 'y': 2}
   ```
+
+- `sys.getsizeof()` 查看对象占用内存的大小，单位是字节。

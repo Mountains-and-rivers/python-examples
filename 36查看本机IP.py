@@ -3,10 +3,10 @@
 
 """查看本机IP."""
 
-import socks
 import socket
 
 import requests
+import socks
 from bs4 import BeautifulSoup
 
 

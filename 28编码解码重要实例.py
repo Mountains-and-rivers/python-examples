@@ -60,7 +60,7 @@ def example4():
     print(s)
 
     # 另一种形式, 多两个单引号
-    s = ascii('咕咕太硬了') # "'\\u5495\\u5495\\u592a\\u786c\\u4e86'"
+    s = ascii('咕咕太硬了')  # "'\\u5495\\u5495\\u592a\\u786c\\u4e86'"
     print(eval(s))
 
 
