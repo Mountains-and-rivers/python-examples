@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""如果父类有metalcass, 那么也会影响子类.
+"""如果父类有 metalcass，那么也会影响子类。
 
-这里ModelMetaclass会调用两次, Model和User各一次.
+这里 ModelMetaclass 会调用两次，Model 和 User 各一次.
 """
 
 
-class Field(object):
+class Field:
 
     def __init__(self, name, column_type):
         self.name = name
@@ -38,9 +38,9 @@ class ModelMetaclass(type):
             # 类的名字
             # 类继承的父类集合
             # 类的方法集合
-            return type.__new__(mcs, name, bases, attrs)
+            return super().__new__(mcs, name, bases, attrs)
         print('Found model: %s' % name)
-        mappings = dict()
+        mappings = {}
         for k, v in attrs.items():
             if isinstance(v, Field):
                 print('Found mapping: %s ==> %s' % (k, v))
@@ -49,13 +49,13 @@ class ModelMetaclass(type):
             attrs.pop(k)
         attrs['__mappings__'] = mappings  # 保存属性和列的映射关系
         attrs['__table__'] = name  # 假设表名和类名一致
-        return type.__new__(mcs, name, bases, attrs)
+        return super().__new__(mcs, name, bases, attrs)
 
 
 class Model(dict, metaclass=ModelMetaclass):
 
     def __init__(self, **kw):
-        super(Model, self).__init__(**kw)
+        super().__init__(**kw)
 
     def __getattr__(self, key):
         try:

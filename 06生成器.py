@@ -1,7 +1,25 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""生成器演示生产者, 消费者例子."""
+"""生成器演示生产者，消费者例子。
+
+注意在生成器中（函数中有 yield 就为生成器），
+不要用 `raise StopIteration`，退出生成器，这是多此一举，
+直接用 return 退出就行。
+`raise StopIteration` 是用在 `__next__()` 魔法方法中的。
+
+例子：
+```python
+def generator():
+    for x in range(10):
+        if x == 5:
+            # 这样是不对的，
+            # 会抛出异常！
+            # 正确做法是用 `return`
+            raise StopIteration
+        yield x
+```
+"""
 
 
 def consumer():
