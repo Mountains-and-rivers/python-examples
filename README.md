@@ -225,7 +225,7 @@
   a is c # False
   ```
 
-- Python 允许在 `class` 中定义一个 `__slots__` 属性，来限制该 `class` 实例能添加的属性，用法 `__slots__ = ('name', 'age')`，要注意，该属性只对当前类其作用，对继承它的子类不起作用。
+- Python 允许在 `class` 中定义一个 `__slots__` 属性，来限制该 `class` 实例能添加的属性，用法 `__slots__ = ('name', 'age')`，要注意，该属性只对当前类其作用，对继承它的子类不起作用；如果在子类中定义了 `__slots__`，那么必须包含父类中定义的变量，不然会初始化失败。
 
 - `import` 查找路径，先从当前目录下找，再从 `sys.path` 中找，找不到则抛出 `ModuleNotFoundError` 异常。
 
