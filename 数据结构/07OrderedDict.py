@@ -13,14 +13,26 @@ from collections import OrderedDict
 def main() -> None:
     od = OrderedDict(A=1, B=2, C=3)
     print(od)
+
+    # 新添加的元素会到结尾
+    od['D'] = 4
+    print(od)
+
+    # 但已存在的 key 修改则不会移动
+    od['A'] = 5
+    print(od)
+
     # 将一个元素移动到结尾，若 last 为 False，则移动到开头
     od.move_to_end('A')  # last 默认 True
     print(od)
+
     od.move_to_end('A', last=False)
     print(od)
+
     # 默认弹出最后一个元素，若 last 为 False，则弹出开头的
     od.popitem()  # last 默认 True
     print(od)
+
     od.popitem(last=False)
     print(od)
 
