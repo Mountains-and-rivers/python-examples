@@ -2,6 +2,9 @@
 
 任务分发，可以通过 Redis 或 queue.Queue() 来实现。
 线程同步通过 threading.Lock() 来实现。
+
+Created：2018-11-14
+Modified：2018-11-14
 """
 
 import atexit

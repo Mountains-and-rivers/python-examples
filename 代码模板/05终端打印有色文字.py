@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""在 Linux 终端打印有颜色或格式的文字.
+"""在 Linux 终端打印有颜色或格式的文字。
 
 格式：\033[显示方式;前景色;背景色m你的内容\033[0m
 
@@ -26,6 +26,9 @@
 5              闪烁
 7             反白显示
 8              不可见
+
+Created：2018-11-14
+Modified：2018-11-14
 """
 
 
@@ -40,7 +43,7 @@ COLOR = {
 }
 
 
-def cool(string: str, color: str=None, bold: bool=False) -> str:
+def cool(string: str, color: str='', bold: bool=False) -> str:
     """选择控制台打印文字格式.
     
     :param string: 输出的文字内容.

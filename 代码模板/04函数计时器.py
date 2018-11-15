@@ -1,3 +1,9 @@
+"""打印函数运行时间。
+
+Created：2018-11-14
+Modified：2018-11-14
+"""
+
 import time
 import functools
 
