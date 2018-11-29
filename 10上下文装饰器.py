@@ -25,6 +25,6 @@ def cd(path):
     old_cwd = os.getcwd()
     os.chdir(path)
     try:
-        yield # 可以就写一个yield
+        yield  # 可以就写一个yield
     finally:
         os.chdir(old_cwd)

@@ -4,9 +4,7 @@
 import asyncio
 
 import uvloop
-from aiohttp import ClientSession 
-
-from finished import finished
+from aiohttp import ClientSession
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
@@ -21,7 +19,6 @@ async def wget(index, url, sem):
                 print('%d: %s' % (index, text))
 
 
-@finished
 def main():
     url = 'http://127.0.0.1:5000/'
 

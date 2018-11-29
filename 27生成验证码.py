@@ -116,9 +116,7 @@ def build_captcha() -> (str, bytes):
 
 if __name__ == '__main__':
 
-    # from finished import finished
-    # # 检查性能
-    # @finished
+    # 检查性能
     # def test():
     #     for i in range(3000):
     #         img = Captcha()

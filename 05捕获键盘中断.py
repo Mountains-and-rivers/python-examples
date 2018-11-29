@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""捕获Ctrl+c的键盘中断"""
+"""捕获 Ctrl+c 的键盘中断"""
 
 import time
 import sys
@@ -16,7 +16,7 @@ def main():
     except KeyboardInterrupt:  # 注意每个线程都有自己的异常
         t, v, tb = sys.exc_info()
         print(t)
-        exit(0)  # exit只退出当前线程
+        exit(0)  # exit 只退出当前线程
     finally:
         end = time.perf_counter()
         finished = end - start

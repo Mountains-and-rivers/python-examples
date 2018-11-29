@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-"""进程间通信, 用Queue类.
+"""进程间通信, 用 Queue 类。
 
 可以看到, 两个进程是同步的.
 """

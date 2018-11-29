@@ -1,7 +1,7 @@
 """用 Python 生成各种时间格式。
 
-注意不同时间类型不能相互比较,
-如datetime.date类和datetime.datetime类.
+注意不同时间类型不能相互比较，
+如 `datetime.date` 类和 `datetime.datetime` 类。
 """
 
 import time

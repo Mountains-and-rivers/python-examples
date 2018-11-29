@@ -3,15 +3,15 @@
 
 """IP归属地查询."""
 
-import requests
+from urllib import request
+
 from lxml import etree
 
 
 def get_html(ip):
-    url = 'http://m.ip138.com/ip.asp'
-    kw = {'ip': ip}
-    r = requests.get(url, params=kw)
-    return r.content
+    url = f'http://m.ip138.com/ip.asp?ip={ip}'
+    with request.urlopen(url) as response:
+        return response.read()
 
 
 def parse_html(html):

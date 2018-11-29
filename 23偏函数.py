@@ -2,7 +2,8 @@
 # coding: utf-8
 
 """偏函数。
-减少传入的参数数量，或用于 key，且不能传参数的情况。
+减少传入函数的参数数量，
+或用于 函数作为 key，且不能传参数的情况。
 """
 
 from functools import partial

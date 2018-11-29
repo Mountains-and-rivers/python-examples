@@ -15,7 +15,7 @@ import argparse
 
 
 def arg_parse():
-    """模拟mysql命令行参数。
+    """模拟 mysql 命令行参数。
 
     add_argument() 各个参数含义：
     name/flags：参数的名字

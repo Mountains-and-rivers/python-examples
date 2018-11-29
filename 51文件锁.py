@@ -17,12 +17,17 @@ import fcntl
 import sys
 
 
-f = open('00test.py', 'r')
-try:
-    # LOCK_NB 代表不阻塞，默认情况下，
-    # LOCK_EX 模式下的 flock() 会阻塞等待。
-    fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-except BlockingIOError as e:
-    sys.stderr.write('flock failed: %d (%s)\n' % (e.errno, e.strerror))
-time.sleep(10)
-f.close()
+def main() -> None:
+    f = open('00test.py', 'r')
+    try:
+        # LOCK_NB 代表不阻塞，默认情况下，
+        # LOCK_EX 模式下的 flock() 会阻塞等待。
+        fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as e:
+        sys.stderr.write('flock failed: %d (%s)\n' % (e.errno, e.strerror))
+    time.sleep(10)
+    f.close()
+
+
+if __name__ == '__main__':
+    main()

@@ -3,9 +3,7 @@
 
 import asyncio
 
-from aiohttp import ClientSession 
-
-from finished import finished
+from aiohttp import ClientSession
 
 
 async def wget(index, url):
@@ -18,7 +16,6 @@ async def wget(index, url):
     await session.close()
 
 
-@finished
 def main():
     url = 'http://127.0.0.1:5000/'
 
