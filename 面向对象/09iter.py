@@ -62,6 +62,7 @@ def main() -> None:
 
     # 可以看到先调用 `__iter__()`，返回一个 generator
     # 然后不停调用 `__next__()` 方法
+    # 不实现 `__iter__()`，实现`__getitem__()`，也能用 for 迭代
     for i in fib:
         print(i)
 
