@@ -27,8 +27,8 @@
 7             反白显示
 8              不可见
 
-Created：2018-11-14
-Modified：2018-11-14
+Create:   2018-11-14
+Modified:
 """
 
 

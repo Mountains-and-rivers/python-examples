@@ -1,7 +1,7 @@
 """日志模块。
 
-Created：2018-9-29
-Modified：2018-10-7
+Create:   2018-9-29
+Modified: 2018-10-7
 """
 
 import logging

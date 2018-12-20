@@ -3,8 +3,8 @@
 任务分发，可以通过 Redis 或 queue.Queue() 来实现。
 线程同步通过 threading.Lock() 来实现。
 
-Created：2018-11-14
-Modified：2018-11-14
+Create:   2018-11-14
+Modified: 2018-11-14  添加修改头部
 """
 
 import atexit
@@ -29,14 +29,22 @@ MYSQL_TABLE_SAVE = 'table'
 class Spider(threading.Thread):
 
     headers: Dict[str, str] = {
-        'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36'
-                      ' (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
         'Accept': 'text/html,application/xhtml+xml,application/xml;'
                   'q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Cache-Control': 'max-age=0'
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7'
     }
+
+    # 如果请求 json，用这个头部
+    # headers: Dict[str, str] = {
+    #     'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
+    #     'Accept': 'application/json, text/javascript, */*; q=0.01',
+    #     'Accept-Encoding': 'gzip, deflate, br',
+    #     'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+    #     'Content-Type': 'application/json; charset=UTF-8',
+    #     'x-requested-with': 'XMLHttpRequest'
+    # }
 
     insert_query_temp: str = 'INSERT INTO %s ({}) VALUES ({})' % MYSQL_TABLE_SAVE
 
