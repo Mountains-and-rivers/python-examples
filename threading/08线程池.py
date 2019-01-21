@@ -39,18 +39,14 @@ def action(thread_name, arg):
 
 class ThreadPool:
 
-    def __init__(self, max_num, max_task_num=None):
+    def __init__(self, max_num, max_task_num=0):
         """初始化线程池.
 
         :param max_num: 线程池最大线程数量
         :param max_task_num: 任务队列长度
         """
-        # 如果提供了最大任务数的参数，则将队列的最大元素个数设置为这个值。
-        if max_task_num:
-            self.q = queue.Queue(max_task_num)
-        # 默认队列可接受无限多个的任务
-        else:
-            self.q = queue.Queue()
+
+        self.q = queue.Queue(max_task_num)
         # 设置线程池最多可实例化的线程数
         self.max_num = max_num
         # 任务取消标识
@@ -172,7 +168,7 @@ class ThreadPool:
             state_list.remove(worker_thread)
 
 
-if __name__ == '__main__':
+def main() -> None:
     # 创建一个最多包含5个线程的线程池
     pool = ThreadPool(5)
     # 创建100个任务，让线程池进行处理
@@ -189,3 +185,7 @@ if __name__ == '__main__':
     # 强制关闭线程池
     # pool.terminate()
     # print("强制停止任务！")
+
+
+if __name__ == '__main__':
+    main()

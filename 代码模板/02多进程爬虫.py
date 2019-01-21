@@ -31,7 +31,7 @@ REDIS_TASK_LIST = 'task_list'  # 读取任务
 
 class Spider:
 
-    headers: Dict[str, str] = {
+    headers_html: Dict[str, str] = {
         'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
         'Accept': 'text/html,application/xhtml+xml,application/xml;'
                   'q=0.9,image/webp,image/apng,*/*;q=0.8',
@@ -40,14 +40,14 @@ class Spider:
     }
 
     # 如果请求 json，用这个头部
-    # headers: Dict[str, str] = {
-    #     'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
-    #     'Accept': 'application/json, text/javascript, */*; q=0.01',
-    #     'Accept-Encoding': 'gzip, deflate, br',
-    #     'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-    #     'Content-Type': 'application/json; charset=UTF-8',
-    #     'x-requested-with': 'XMLHttpRequest'
-    # }
+    headers_json: Dict[str, str] = {
+        'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-requested-with': 'XMLHttpRequest'
+    }
 
     def __init__(self) -> None:
         self.mongo_conn = pymongo.MongoClient(host=MONGO_HOST, port=MONGO_PORT)
@@ -56,11 +56,10 @@ class Spider:
         self.redis = StrictRedis()  # 读取数据
 
         self.session = requests.Session()
-        self.session.headers.update(self.headers)
+        self.session.headers.update(self.headers_html)
 
     def run(self) -> None:
-        # TODO
-        pass
+        raise NotImplementedError
 
     def save(self, item_list: Dict) -> None:
         for item in item_list:
