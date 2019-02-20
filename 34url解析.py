@@ -2,7 +2,7 @@ from urllib import parse
 
 
 def main():
-    url = 'http://www.walgreens.com/locator/walgreens-801+canal+st-new+orleans-la-70112/id=15615'
+    url = 'http://www.walgreens.com/locator/walgreens-801+canal+st-new+orleans-la-70112/id=15615:1080'
 
     # result 是个具名元组
     result = parse.urlparse(url)

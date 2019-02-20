@@ -1,4 +1,6 @@
-# Python值得注意的地方（想到哪写到哪）
+# Python 笔记
+
+Python 值得注意的地方，想到哪写到哪。
 
 - 每个 `.py` 文件都有一个 `__name__` 属性，当作为脚本运行时，该属性为 `__main__`；当作为模块导入时，该属性为模块名。
 - 每个函数也有一个 `__name__` 属性可以获取其函数名，还有个 `__module__` 属性可以获取所在模块名。
@@ -23,14 +25,14 @@
   ```python
   isinstance(True, int)   # True
   isinstance(False, int)  # True
-  
+
   True == 1 == 1.0 and False == 0 == 0.0  # True
-  
+
   another_dict = {}
   another_dict[True] = "JavaScript"
   another_dict[1] = "Ruby"
   another_dict[1.0] = "Python"
-  
+
   another_dict[True]  # Python
   ```
 
@@ -51,13 +53,13 @@
   ```python
   # 列表推导式
   [x * x for x in range(1, 11) if x % 2 == 0]
-  
+
   # 生成器推导式
   (x for x in range(9))
-  
+
   # 字典推导式
   {v:k for k, v in d.items()}  # 逆转 key 和 value
-  
+
   # 集合推导式
   {x for x in 'abracadabra' if x not in 'abc'}
   ```
@@ -102,11 +104,11 @@
   a = 10
   b = 10
   id(a) == id(b) # True
-  
+
   L = []
   L += ['a']
   # 前后 id 没变
-  
+
   L2 = []
   L2 = L2 + ['a']
   # 前后 id 改变，说明返回了一个新列表
@@ -116,7 +118,7 @@
 
   ```python
   d = {'a': -1, 'b': -2, 'c': -3}
-  
+
   min(d, key=lambda k: d[k])  # -3
   max(d, key=lambda k: d[k])  # -1
   ```
@@ -163,7 +165,7 @@
 
   ```python
   # 假设B继承于A
-  
+
   # type() 不会认为子类是父类的一种类型
   type(B()) == A # False
   # isinstance() 认为子类是父类的一种类型
@@ -180,7 +182,7 @@
 
 - 解包2：`lst = [1, 2]`，令 `a, *b = lst`，结果为`a = 1; b = [2]` 。
 
-- 解包3：`lst=[1, 2, (3, 4)]`，令 `a, b, (c, d) = lst`，即可解包出 1，2，3，4 。 
+- 解包3：`lst=[1, 2, (3, 4)]`，令 `a, b, (c, d) = lst`，即可解包出 1，2，3，4 。
 
 - 字典操作：`dict(A=1, B='foo')`，结果为 `{'A':1, 'B':'foo'}`。
 
@@ -192,7 +194,7 @@
 
   ```python
   l = [1, 2, 3, 4, 5]
-  
+
   l[:10]  # [1, 2, 3, 4, 5]
   ```
 
@@ -202,12 +204,12 @@
 
   ```python
   l = [1, 2, 3, 4, 5, 6, 7]
-  
+
   l[::-1]    # [7, 6, 5, 4, 3, 2, 1]
   l[-1::-1]  # [7, 6, 5, 4, 3, 2, 1]
   l[-1:0:-1] # [7, 6, 5, 4, 3, 2]
   l[-2:1:-1] # [6, 5, 4, 3]
-  
+
   # 可以看到，当步长为 -1 时，切片序号要颠倒
   ```
 
@@ -217,10 +219,10 @@
   a = {'name':'hh', 'age': 7}
   b = c
   c = {'name':'hh', 'age': 7}
-  
+
   a == b # True
   a == c # True
-  
+
   a is b # True
   a is c # False
   ```
@@ -233,14 +235,13 @@
 
 - 解除一个装饰器：通过访问被装饰函数的 `__wrapped__` 属性来获取原函数，注意这只对单个装饰器包装的函数有效。
 
-
 - 元组或列表之间，可以相互比较，从第一个元素开始比，如果前面的比较已经可以确定结果了，后面的比较操作就不会发生了：
 
   ```python
   a = (1, 2)
   b = (1, 3)
   c = (2, 1)
-  
+
   a < b  # True
   a < c  # True
   b < c  # True
@@ -257,7 +258,7 @@
   a.keys() - b.keys() # { 'z' }
   # Find (key,value) pairs in common
   a.items() & b.items() # { ('y', 2) }
-  
+
   # 注意以上都是集合类型
   ```
 
@@ -276,7 +277,7 @@
   ```python
   # 含有不同类型的列表不能排序
   l = [28, 14, '28', 5, '9', '1', 0, 6, '23', 19]
-  
+
   # 利用 key 转换类型
   sorted(l, key=int)  # [0, '1', 5, 6, '9', 14, 19, '23', 28, '28']
   sorted(l, key=str)  # [0, '1', 14, 19, '23', 28, '28', 5, 6, '9']

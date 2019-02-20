@@ -4,12 +4,21 @@ import ssl
 
 def client():
     hostname = 'www.baidu.com'
-    context = ssl.create_default_context()
+    sock = socket.socket()
+    sock.setblocking(False)
+    # context = ssl.create_default_context()
+    # ssock = context.wrap_socket(sock)
+    ssock = ssl.wrap_socket(sock)
+    ssock.setblocking(False)
+    try:
+        ssock.connect((hostname, 443))
+    except BlockingIOError:
+        pass
 
-    with socket.create_connection((hostname, 443)) as sock:
-        with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-            # 获取对方地址
-            print(ssock.getpeername())
+    # with socket.create_connection((hostname, 443)) as sock:
+    #     with context.wrap_socket(sock, server_hostname=hostname) as ssock:
+    #         # 获取对方地址
+    #         print(ssock.getpeername())
 
 
 def server():

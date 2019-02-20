@@ -18,10 +18,12 @@ import random
 import signal
 from multiprocessing import Pool
 
+CHILD_PROCESS_NUMBER = 4
 
-def kill_self(signal):
+
+def kill_self(sig):
     print(123)
-    os.kill(os.getpid(), signal)
+    os.kill(os.getpid(), sig)
     print(456)
 
 
@@ -37,11 +39,10 @@ def long_time_task(name):
         t, v, tb = sys.exc_info()
         print(t)
     finally:
-        print('Child process %s' % name)
+        print('Child process %s done.' % name)
 
 
-if __name__ == '__main__':
-    CHILD_PROCESS_NUMBER = 2
+def main() -> None:
     print('Parent process id is %s.' % os.getpid())
     p = Pool(CHILD_PROCESS_NUMBER)
     for i in range(CHILD_PROCESS_NUMBER):
@@ -49,7 +50,11 @@ if __name__ == '__main__':
     print('Waiting for all subprocesses done...')
     p.close()  # 调用 close() 之后就不能继续添加新的 Process 了
     try:
-        p.join()  # join()等待所有子进程结束
+        p.join()  # join() 等待所有子进程结束
     except KeyboardInterrupt: # 一次键盘中断, 所有父子进程都会收到
         p.join()  # 这里必须再加个join(), 不然父进程有可能先结束
     print('Parent process done.')
+
+
+if __name__ == '__main__':
+    main()

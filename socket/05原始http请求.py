@@ -9,10 +9,10 @@ import ssl
 
 def parse_url(url):
     """解析url.
-    
+
     :param url: str, 去除协议后的url.
 
-    :return host: str, 
+    :return host: str,
             port: int,
             resource: str.
     """
