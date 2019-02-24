@@ -18,12 +18,13 @@ def load1():
 
 def load2():
     """打印百分比."""
-    
-    for i in range(100):
+
+    count = 100
+    for i in range(count):
         # sys.stdout.write('\r%s%%'%(i+1))
         # sys.stdout.flush()
         # 等价上面两句
-        print('\r%s%%' % (i+1), end='', flush=True)
+        print('\r%.3f%%' % ((i+1)/count*100), end='', flush=True)
         time.sleep(0.03)
 
 
@@ -50,7 +51,7 @@ def load4():
 
 
 if __name__ == '__main__':
-    load1()
+    #load1()
     load2()
-    load3()
-    load4()
+    #load3()
+    #load4()
