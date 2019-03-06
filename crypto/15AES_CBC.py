@@ -7,7 +7,7 @@ BS = 32  # Bytes
 
 def pad(s):
     """填充要加密的文本到 BS 的倍数。
-    填充内容见一下算法。
+    填充内容见以下算法。
     """
 
     return s + (BS - len(s) % BS) * chr(BS - len(s) % BS).encode('utf-8')
