@@ -48,13 +48,15 @@ import struct
 def main() -> None:
     # struct 的 pack 函数把任意数据类型变成 bytes
     # 长度要一致
-    b = struct.pack('I', 10240099)
+    b = struct.pack('2I', 0xfffffff, 0xaaaaaaaa)
     print(b)
+
+    t = struct.unpack('6b', b'abcdef')
+    print(t)
 
     # 可以创建一个对象
     s = struct.Struct('<B')
     print(s.pack(0xff))
-    print(s.unpack(b'a'))
 
 
 if __name__ == '__main__':
