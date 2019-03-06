@@ -2,10 +2,10 @@
 
 非常适合解析文件头。
 
-struct 的 pack 函数把任意数据类型变成 bytes
+struct 的 pack 函数把任意数据类型变成 bytes：
 struct.unpack(fmt, data)
 
-unpack 把 bytes 变成相应的数据类型
+unpack 把 bytes 变成相应的数据类型，返回元组：
 struct.pack(fmt, data)
 
 Character	Byte order
@@ -14,6 +14,8 @@ Character	Byte order
 <	        little-endian
 >	        big-endian
 !	        network (= big-endian)
+
+默认小端（little-endian），`<`。
 
 Format	C Type	        Python type	        Standard size
 x	    pad byte	    no value
@@ -46,8 +48,13 @@ import struct
 def main() -> None:
     # struct 的 pack 函数把任意数据类型变成 bytes
     # 长度要一致
-    b = struct.pack('<I', 10240099)
+    b = struct.pack('I', 10240099)
     print(b)
+
+    # 可以创建一个对象
+    s = struct.Struct('<B')
+    print(s.pack(0xff))
+    print(s.unpack(b'a'))
 
 
 if __name__ == '__main__':

@@ -100,6 +100,7 @@ def task(name: str) -> None:
     finally:
         print('Enter finally!')
         s.close()
+
         print('Child process %s done.' % name)
 
 
