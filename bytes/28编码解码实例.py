@@ -8,7 +8,7 @@ from urllib import parse
 
 
 def example1():
-    """utf-8编码解码"""
+    """utf-8 编码解码"""
 
     # 无法显示为 ascii 的字符都以 \x## 显示
     b = b'\xe5\x92\x95\xe5\x92\x95\xe5\xa4\xaa\xe7\xa1\xac\xe4\xba\x86'
@@ -21,7 +21,7 @@ def example1():
 
 
 def example2():
-    """unicode编码解码"""
+    """unicode 编码解码"""
 
     print(hex(ord('咕')))
     # utf-8 的中文占 3 个字节，而这里的 \u5495 是 unicode，只占 2 个字节
@@ -38,7 +38,7 @@ def example2():
 def example3():
     """把十六进制数字组成的字符串转换成 utf-8"""
 
-    # s 是 wireshark 中复制出来的一段十六进制数字组成的字符串
+    # s 是 wireshark 中用 Hex Stream 复制出来的一段十六进制数字组成的字符串
     s = 'a0000000a0000000b202000074797065403d636861746d' \
         '73672f726964403d3233313535342f756964403d393731' \
         '373239372f6e6e403d323731323336306162632f74787440' \
@@ -75,5 +75,4 @@ if __name__ == '__main__':
     # example1()
     # example2()
     # example3()
-    # example4()
-    example5()
+    example4()

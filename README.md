@@ -282,3 +282,5 @@ Python 值得注意的地方，想到哪写到哪。
   sorted(l, key=int)  # [0, '1', 5, 6, '9', 14, 19, '23', 28, '28']
   sorted(l, key=str)  # [0, '1', 14, 19, '23', 28, '28', 5, 6, '9']
   ```
+
+- `b.decode(errors='ignore')` 设置 `errors` 参数后，可以忽略 decode 时的错误。

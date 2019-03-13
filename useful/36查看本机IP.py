@@ -7,23 +7,32 @@ import socket
 
 import requests
 import socks
-from bs4 import BeautifulSoup
+from lxml import etree
 
 
 def main():
+    headers_html = {
+        'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko)',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;'
+                  'q=0.9,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7'
+    }
+
     # 使用socks5代理, 方法1
     # socks.set_default_proxy(socks.SOCKS5, '127.0.0.1', 1080)
-    socket.socket = socks.socksocket
-    url = 'https://www.ipip.net/'
+    # socket.socket = socks.socksocket
+    url = 'https://www.ipip.net/ip.html'
     with requests.Session() as session:
+        session.headers.update(headers_html)
         # 使用socks5代理, 方法2
-        session.proxies = {
-            'http': 'socks5://127.0.0.1:1080',
-            'https': 'socks5://127.0.0.1:1080'
-        }
+        # session.proxies = {
+        #     'http': 'socks5://127.0.0.1:1080',
+        #     'https': 'socks5://127.0.0.1:1080'
+        # }
         r = session.get(url)
-        soup = BeautifulSoup(r.text, 'lxml')
-        ip = soup.select('div.yourInfo li')[0].get_text()
+        selector = etree.HTML(r.text)
+        ip = selector.xpath('.//form[@method="post"]/input[@name="ip"]/@value')[0]
         print(ip)
 
 

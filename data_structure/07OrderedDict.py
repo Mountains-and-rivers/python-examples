@@ -33,8 +33,12 @@ def main() -> None:
     od.popitem()  # last 默认 True
     print(od)
 
+    # 弹出开头的元素
     od.popitem(last=False)
     print(od)
+
+    # get 和默认字典行为一样
+    print(type(od.get('hhhh')))
 
 
 if __name__ == '__main__':
