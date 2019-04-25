@@ -29,7 +29,7 @@ def main():
         print('等待事件中...')
         events = epoll.poll()
 
-        # 轮询注册的111.13.100.92事件集合, 返回格式为[(文件句柄, 对应的事件), ...]
+        # 轮询注册的事件集合, 返回格式为[(文件句柄, 对应的事件), ...]
         for fd, event in events:
             print('fd: {}, event: {}'.format(fd, event))
 

@@ -19,17 +19,17 @@ def main():
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7'
     }
 
-    # 使用socks5代理, 方法1
+    # 使用 socks5 方法 1，使用全局 socks5 代理
     # socks.set_default_proxy(socks.SOCKS5, '127.0.0.1', 1080)
     # socket.socket = socks.socksocket
     url = 'https://www.ipip.net/ip.html'
     with requests.Session() as session:
         session.headers.update(headers_html)
-        # 使用socks5代理, 方法2
-        # session.proxies = {
-        #     'http': 'socks5://127.0.0.1:1080',
-        #     'https': 'socks5://127.0.0.1:1080'
-        # }
+        # 使用 socks5 方法 2，局部
+        session.proxies = {
+            'http': 'socks5://127.0.0.1:1080',
+            'https': 'socks5://127.0.0.1:1080'
+        }
         r = session.get(url)
         selector = etree.HTML(r.text)
         ip = selector.xpath('.//form[@method="post"]/input[@name="ip"]/@value')[0]
