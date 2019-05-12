@@ -1,4 +1,4 @@
-"""读取 excel 文件。
+"""读取 excel 文件，推荐使用 openpyxl。
 
 操作 excel 文件的话，建议直接使用 pandas 。
 """
