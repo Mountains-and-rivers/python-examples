@@ -3,11 +3,17 @@
 Python 值得注意的地方，想到哪写到哪。
 
 - 每个 `.py` 文件都有一个 `__name__` 属性，当作为脚本运行时，该属性为 `__main__`；当作为模块导入时，该属性为模块名。
+
 - 每个函数也有一个 `__name__` 属性可以获取其函数名，还有个 `__module__` 属性可以获取所在模块名。
+
 - 用 `__file__` 属性获取脚本文件路径，注意该路径不一定与 `os.getcwd()` 函数获取的路径相同。
+
 - 用 `dir(name)` 查看模块，函数或类拥有的属性和方法；用 `help(name)` 查看模块，函数或类帮助。
+
 - `dir(__builtins__)` 查看所有内置对象名称。
+
 - `from dis import dis; dis(name)`，可以查看相关代码的 Python 字节码。
+
 - `sys.getsizeof()` 查看对象占用内存的大小，单位是字节。
 
 - `python -m http.server`，可以起一个 HTTP 服务器，可以用来下载当前目录下的文件。
@@ -284,3 +290,27 @@ Python 值得注意的地方，想到哪写到哪。
   ```
 
 - `b.decode(errors='ignore')` 设置 `errors` 参数后，可以忽略 decode 时的错误。
+
+- `for … else …`：
+
+  ```python
+  for i in []:
+  	print(i)
+  else:
+      print('空')
+      
+  # 会打印 '空'
+  ```
+
+  ```python
+  for x in range(5):
+      if x % 2 == 0:
+          print("break")
+          break  # 不会执行 else
+  else:
+      print("no break")
+      
+  # 会打印 'break'，不打印 'no break'
+  ```
+  
+  同时还有 `while … else …`，类似。
