@@ -26,10 +26,10 @@ def main():
     with requests.Session() as session:
         session.headers.update(headers_html)
         # 使用 socks5 方法 2，局部
-        session.proxies = {
-            'http': 'socks5://127.0.0.1:1080',
-            'https': 'socks5://127.0.0.1:1080'
-        }
+        # session.proxies = {
+        #     'http': 'socks5://127.0.0.1:1080',
+        #     'https': 'socks5://127.0.0.1:1080'
+        # }
         r = session.get(url)
         selector = etree.HTML(r.text)
         ip = selector.xpath('.//form[@method="post"]/input[@name="ip"]/@value')[0]
