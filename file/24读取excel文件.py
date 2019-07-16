@@ -3,12 +3,11 @@
 操作 excel 文件的话，建议直接使用 pandas 。
 """
 
-import xlrd
-from openpyxl import load_workbook
-
 
 def use_xlrd(path):
     """不建议使用"""
+
+    import xlrd
 
     workbook = xlrd.open_workbook(path)
     # sheet索引从0开始
@@ -33,6 +32,8 @@ def use_xlrd(path):
 
 def use_openpyxl(path):
     """使用 openpyxl 读取 excel"""
+
+    from openpyxl import load_workbook
 
     # 读取，`read_only` 可以提高性能
     wb = load_workbook(path, read_only=True)

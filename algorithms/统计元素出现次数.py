@@ -22,7 +22,9 @@ def main():
     print(max(d.items(), key=lambda x: x[1])[0])
 
     # 第二种方式，使用 Counter
-    print(Counter(pattern.sub(' ', s.lower()).split()))
+    c = Counter(pattern.sub(' ', s.lower()).split())
+    print(c)
+    print(c.most_common(3))
 
 
 if __name__ == '__main__':
