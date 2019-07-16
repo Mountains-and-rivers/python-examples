@@ -24,6 +24,7 @@ def main():
     # 第二种方式，使用 Counter
     c = Counter(pattern.sub(' ', s.lower()).split())
     print(c)
+    # 统计出现最多的 3 个 单词
     print(c.most_common(3))
 
 
