@@ -6,7 +6,7 @@ from io import BytesIO
 from PIL import Image
 
 
-def look_img(info: dict, nj: int, method: str='and') -> Image:
+def look_img(info: dict, nj: int, method: str = 'and') -> Image:
     """查看指定信息所有照片.
 
     :param info: 查询的信息;

@@ -11,12 +11,11 @@ import functools
 def finished(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        start = time.time()
+        start = time.perf_counter()
         try:
             return func(*args, **kwargs)
         except KeyboardInterrupt:
             pass
         finally:
-            end = time.time()
-            print('\n[Finished in %.8fs]\n' % (end - start))
+            print('\n[Finished in %.8fs]\n' % (time.perf_counter() - start))
     return wrapper
