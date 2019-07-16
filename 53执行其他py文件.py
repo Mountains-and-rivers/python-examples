@@ -6,5 +6,5 @@ import subprocess
 
 
 # os.system('python 01Python之禅.py')
-subprocess.call(['python', '35urllib使用.py'])
+subprocess.call(['python', '00test.py'])
 print('over')
