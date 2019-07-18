@@ -7,12 +7,22 @@
 from collections import defaultdict
 
 
-def log_missing():
-    print('key added')
-    return 0
+def example1(current, increments):
+
+    def log_missing():
+        print('key added')
+        return 0
+
+    result = defaultdict(log_missing, current)
+    print('Before:', dict(result))
+    for key, amount in increments:
+        # 当 result 中不存在该 key 时，会调用 log_missing 函数
+        # 打印 'key added'，并把该 key 的值设为 0
+        result[key] += amount
+    print('After:', dict(result))
 
 
-def increment_with_report(current, increments):
+def example2(current, increments):
     """统计有多少个缺失的键。"""
 
     added_count = 0
@@ -26,7 +36,7 @@ def increment_with_report(current, increments):
     for key, amount in increments:
         result[key] += amount
 
-    return result, added_count
+    print(dict(result), added_count)
 
 
 def main():
@@ -36,13 +46,10 @@ def main():
         ('blue', 17),
         ('orange', 9),
     ]
-    result = defaultdict(log_missing, current)
-    print('Before:', dict(result))
-    for key, amount in increments:
-        # 当 result 中不存在该 key 时，会调用 log_missing 函数
-        # 打印 'key added'，并把该 key 的值设为 0
-        result[key] += amount
-    print('After:', dict(result))
+
+    example1(current, increments)
+    print('*' * 50)
+    example2(current, increments)
 
 
 if __name__ == '__main__':
