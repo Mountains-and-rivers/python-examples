@@ -19,6 +19,7 @@ def main():
     q = Queue(maxsize=5)
     for i in range(10):
         try:
+            # `block=False` 不阻塞等待
             q.put(i, block=False)
         except Full:
             print('Full')
@@ -28,7 +29,6 @@ def main():
 
     while True:
         try:
-            # 非阻塞
             i = q.get(block=False)
             print(i)
         except Empty:

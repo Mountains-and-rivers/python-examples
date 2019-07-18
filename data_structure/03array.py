@@ -24,6 +24,7 @@ import array
 def main():
     # 显示所有数组所有可用的创建类型
     print(array.typecodes)
+    print('*' * 50)
 
     # 创建一个数组，支持如下方式
     # array('l')
@@ -63,8 +64,8 @@ def main():
     # 转换成字节
     print(a.tobytes())
     # 将内容写入文件
-    with open('test.txt', 'wb') as f:
-        a.tofile(f)
+    # with open('test.bin', 'wb') as f:
+    #     a.tofile(f)
 
     """此外还有"""
     # a.fromlist(lst)
