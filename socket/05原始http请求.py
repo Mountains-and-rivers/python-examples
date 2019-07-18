@@ -19,12 +19,21 @@ def parse_url(url):
 
     protocol, _, url = url.partition('://')
     protocol = protocol.lower()
-    if protocol == 'http':
-        port = 80
-    elif protocol == 'https':
-        port = 443
+    if protocol == 'https':
+        is_ssl = True
     else:
-        raise SyntaxError
+        is_ssl = False
+
+    url, _, port_s = url.partition(':')
+    if not port_s:
+        if protocol == 'http':
+            port = 80
+        elif protocol == 'https':
+            port = 443
+        else:
+            raise SyntaxError('only http or https')
+    else:
+        port = int(port_s)
 
     try:
         pos = url.lower().index('/')
@@ -36,7 +45,7 @@ def parse_url(url):
         host = url
         resource = '/'
 
-    return host, port, resource
+    return host, port, resource, is_ssl
 
 
 def fetch(url):
@@ -45,10 +54,10 @@ def fetch(url):
     :param url: str, 请求的完整url.
     """
 
-    host, port, resource = parse_url(url)
+    host, port, resource, is_ssl = parse_url(url)
 
     sock = socket.socket()
-    if port == 443:
+    if is_ssl:
         # 这种使用 ssl 方法，已经在 3.7 被标记为不推荐
         sock = ssl.wrap_socket(sock)
 
